@@ -43,6 +43,8 @@ The monitoring setup utilizes specific CloudWatch namespaces and dimensions to o
 ___
 ## Pipeline Execution Flow
 
+<img width="1920" height="1080" alt="anomaly_detection_alarm" src="https://github.com/user-attachments/assets/0b6b550a-1b8c-4055-8d5b-b43bd2d818f9" />
+
 The implementation follows a structured progression to set up, test, and observe anomaly detection:
 
 1. **Alarm Creation:** Enabled anomaly detection and created a CloudWatch alarm named `logins-alarm` for the `UserLogins` metric within the `TravelApplication` namespace.
@@ -59,6 +61,8 @@ ___
 
 ___
 ## Business Outcomes & Analytical Outputs
+
+<img width="1920" height="1080" alt="cloudwatch-alarn-in-alarm-state" src="https://github.com/user-attachments/assets/fd28ab8d-094d-47d4-aad9-a0984bd0d08f" />
 
 * Automated Incident Response: Implemented automated anomaly detection to reduce the time required to identify and respond to unusual application behavior.
 * Adaptive Monitoring: Replaced brittle static alarms with machine-learning-backed anomaly detection bands that adapt to the application's expected 24-hour patterns.

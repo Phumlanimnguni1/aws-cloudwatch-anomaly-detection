@@ -1,0 +1,28 @@
+-- 1. To view configured anomaly detectors, run the following command.
+aws cloudwatch describe-anomaly-detectors
+
+-- 2. To view the metrics settings of the new alarm, run the following command.
+aws cloudwatch describe-alarms --alarm-names logins-alarm --query MetricAlarms[0].Metrics
+
+-- 3. To better understand the ANOMALY_DETECTION_BAND function, 
+--      use the get-metric-data operation. Run the following command.
+      
+aws cloudwatch get-metric-data \
+    --metric-data-queries '[{
+        "Id": "travelAppLogins",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "TravelApplication",
+                "MetricName": "UserLogins" 
+            },
+            "Period": 60,
+            "Stat": "Average"
+        },
+        "ReturnData": false
+    },
+    {
+        "Id": "combined",
+        "Expression": "ANOMALY_DETECTION_BAND(travelAppLogins,2)"
+    }]' \
+    --end-time $(date -u +"%Y-%m-%dT%H:%M:%SZ") \
+    --start-time $(date -u -d "-5 minutes" +"%Y-%m-%dT%H:%M:%SZ")
